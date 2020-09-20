@@ -1,0 +1,55 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "time-formatter",
+      "path": "./index.js",
+      "attributes": [
+        {
+          "name": "datetime"
+        },
+        {
+          "name": "year"
+        },
+        {
+          "name": "month"
+        },
+        {
+          "name": "day"
+        },
+        {
+          "name": "hour"
+        },
+        {
+          "name": "minute"
+        },
+        {
+          "name": "second"
+        },
+        {
+          "name": "time"
+        },
+        {
+          "name": "weekday"
+        },
+        {
+          "name": "date-style"
+        },
+        {
+          "name": "time-style"
+        },
+        {
+          "name": "time-zone-name"
+        },
+        {
+          "name": "time-zone"
+        }
+      ],
+      "properties": [
+        {
+          "name": "language"
+        }
+      ]
+    }
+  ]
+}
