@@ -6,7 +6,9 @@
   "main": "index.js",
   "module": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "analyze": "wca analyze index.js --outFile custom-elements.json",
+    "preversion": "npm run analyze && git add custom-elements.json"
   },
   "keywords": [
     "web component",
@@ -15,5 +17,8 @@
     "time zone"
   ],
   "author": "Phil Nash <philnash@gmail.com> (https://philna.sh)",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "web-component-analyzer": "^1.1.6"
+  }
 }
