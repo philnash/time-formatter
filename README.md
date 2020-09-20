@@ -6,7 +6,11 @@
 
 ## Installation
 
-... TODO ...
+Install the component with:
+
+```bash
+npm install @philnash/time-formatter
+```
 
 ## About
 
@@ -16,19 +20,33 @@
 
 This requires support for:
 
-* Custom elements - https://caniuse.com/custom-elementsv1
-* NavigatorLanguage API - https://caniuse.com/mdn-api_navigatorlanguage_languages (falls back to `navigator.language` or `navigator.userLanguage`)
-* `Intl.DateTimeFormat.format` - https://caniuse.com/mdn-javascript_builtins_intl_datetimeformat_format
-* `Intl.DateTimeFormat` computed `timeZone` - https://caniuse.com/mdn-javascript_builtins_intl_datetimeformat_resolvedoptions_computed_timezone
+- Custom elements - https://caniuse.com/custom-elementsv1
+- NavigatorLanguage API - https://caniuse.com/mdn-api_navigatorlanguage_languages (falls back to `navigator.language` or `navigator.userLanguage`)
+- `Intl.DateTimeFormat.format` - https://caniuse.com/mdn-javascript_builtins_intl_datetimeformat_format
+- `Intl.DateTimeFormat` computed `timeZone` - https://caniuse.com/mdn-javascript_builtins_intl_datetimeformat_resolvedoptions_computed_timezone
 
 ## Usage
+
+Import the `@philnash/time-formatter` module and that will register the `<time-formatter>` custom element.
+
+```javascript
+import "@philnash/time-formatter";
+```
+
+If you want to use the `TimeFormatter` class directly, you can import it with:
+
+```javascript
+import { TimeFormatter } from "@philnash/time-formatter";
+```
 
 To use `<time-formatter>` you will need a date time string in the format `YYYY-MM-DDTHH:mm:ss.sssZ` [as described in ecma262](https://tc39.es/ecma262/#sec-date-time-string-format). In the initial version of this component, `Date.parse` is used to parse this string and non-standard date time strings can be parsed differently by different browsers.
 
 Add the `<time-formatter>` to the page with a `datetime` attribute and default content:
 
 ```html
-<time-formatter datetime="1984-09-14T01:36:00.000+01:00">14/09/1984</time-formatter>
+<time-formatter datetime="1984-09-14T01:36:00.000+01:00"
+  >14/09/1984</time-formatter
+>
 ```
 
 The default content will be replaced with the result of parsing the `datetime` attribute, and formatted according to the user's local time zone and language settings using `Intl.DateTimeFormat`. You can provide options for how the time is formatted and the default is the default used by `Intl.DateTimeFormat`, which is just the date. If the user's preferred language is set to `en-GB` the above example would be rendered as `14/09/1984` and if the preferred language is `en-US` then it would be rendered as `09/14/1984`.
@@ -40,9 +58,7 @@ So, taking the above datetime and passing different formatting options you may g
 _Note my current prefered language is `en-GB` and my current time zone is `Australia/Melbourne`:_
 
 ```html
-<time-formatter
-  datetime="1984-09-14T01:36:00.000+01:00"
-  year="numeric"
+<time-formatter datetime="1984-09-14T01:36:00.000+01:00" year="numeric"
   >14/09/1984</time-formatter
 >
 <!-- 1984 -->

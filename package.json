@@ -1,5 +1,5 @@
 {
-  "name": "time-formatter",
+  "name": "@philnash/time-formatter",
   "version": "0.0.1",
   "description": "A web component that converts a date time into your user's time zone and formats it locally.",
   "type": "module",
