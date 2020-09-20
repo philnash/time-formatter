@@ -1,4 +1,4 @@
-class TimeFormatter extends HTMLElement {
+export class TimeFormatter extends HTMLElement {
   static get observedAttributes() {
     return [
       "datetime",

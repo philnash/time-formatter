@@ -2,11 +2,18 @@
   "name": "time-formatter",
   "version": "0.0.1",
   "description": "A web component that converts a date time into your user's time zone and formats it locally.",
+  "type": "module",
   "main": "index.js",
+  "module": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["web component", "time", "datetime", "time zone"],
+  "keywords": [
+    "web component",
+    "time",
+    "datetime",
+    "time zone"
+  ],
   "author": "Phil Nash <philnash@gmail.com> (https://philna.sh)",
   "license": "MIT"
 }
