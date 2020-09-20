@@ -17,6 +17,14 @@
     "time zone"
   ],
   "author": "Phil Nash <philnash@gmail.com> (https://philna.sh)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/philnash/time-formatter.git"
+  },
+  "homepage": "https://github.com/philnash/time-formatter",
+  "bugs": {
+    "url": "https://github.com/philnash/time-formatter/issues"
+  },
   "license": "MIT",
   "devDependencies": {
     "web-component-analyzer": "^1.1.6"
