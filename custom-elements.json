@@ -33,6 +33,9 @@
           "name": "weekday"
         },
         {
+          "name": "era"
+        },
+        {
           "name": "date-style"
         },
         {
