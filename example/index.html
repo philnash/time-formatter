@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Using time-formatter</title>
+    <script
+      src="https://unpkg.com/@philnash/time-formatter"
+      type="module"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        height: 100%;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+          Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+          "Segoe UI Symbol";
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        background: #282c34;
+        color: #dee2e6;
+        font-size: 21px;
+        padding: 1em;
+      }
+      a {
+        color: rgba(255, 255, 255, 0.75);
+      }
+      a:hover {
+        color: #fff;
+      }
+      h1 {
+        font-size: 46px;
+      }
+      header,
+      main,
+      footer {
+        width: 100%;
+        max-width: 1260px;
+        margin: 0 auto;
+      }
+      main {
+        flex-grow: 1;
+      }
+      footer {
+        border-top: 2px solid rgba(255, 255, 255, 0.75);
+        text-align: center;
+      }
+      ul {
+        list-style: none;
+        margin: 0 0 2em 0;
+        padding: 0;
+        columns: 2;
+      }
+      ul li {
+        break-inside: avoid;
+        margin-bottom: 0.5em;
+      }
+      ul label {
+        display: block;
+      }
+
+      .your-time-zone,
+      time-formatter {
+        font-weight: bold;
+      }
+      time-formatter {
+        display: block;
+        font-size: 2em;
+        padding: 0.5em;
+        background: rgba(255, 255, 255, 0.9);
+        color: #282c34;
+        border-radius: 6px;
+        margin: 0.2em 0;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>What time is it in another time zone?</h1>
+    </header>
+
+    <main>
+      <p>
+        This is an example of using the
+        <a href="https://github.com/philnash/time-formatter"
+          ><code>&lt;time-formatter&gt;</code> web component</a
+        >
+        to format times and dates and display them in the user's time zone.
+      </p>
+      <p>Your time zone: <span class="your-time-zone"></span></p>
+      <p>
+        The time you loaded this page:
+        <time-formatter class="time-now"></time-formatter>
+      </p>
+      <p>
+        Time in
+        <select class="time-zone-list"></select
+        >:
+        <time-formatter class="adjusted-time"></time-formatter>
+      </p>
+
+      <h2>Set the format</h2>
+      <ul>
+        <li>
+          <label for="weekday-style">Weekday</label>
+          <select class="weekday-style" id="weekday-style" name="weekday-style">
+            <option></option>
+            <option value="long">long</option>
+            <option value="short">short</option>
+            <option value="narrow">narrow</option>
+          </select>
+        </li>
+        <li>
+          <label for="era-style">Era</label>
+          <select class="era-style" name="era-style" id="era-style">
+            <option></option>
+            <option value="long">long</option>
+            <option value="short">short</option>
+            <option value="narrow">narrow</option>
+          </select>
+        </li>
+        <li>
+          <label for="year-style">Year</label>
+          <select class="year-style" name="year-style" id="year-style">
+            <option></option>
+            <option value="numeric">numeric</option>
+            <option value="2-digit">2-digit</option>
+          </select>
+        </li>
+        <li>
+          <label for="month-style">Month</label>
+
+          <select class="month-style" name="month-style" id="month-style">
+            <option></option>
+            <option value="numeric">numeric</option>
+            <option value="2-digit">2-digit</option>
+            <option value="long">long</option>
+            <option value="short">short</option>
+            <option value="narrow">narrow</option>
+          </select>
+        </li>
+        <li>
+          <label for="day-style">Day</label>
+
+          <select class="day-style" name="day-style" id="day-style">
+            <option></option>
+            <option value="numeric">numeric</option>
+            <option value="2-digit">2-digit</option>
+          </select>
+        </li>
+        <li>
+          <label for="hour-style">Hour</label>
+
+          <select class="hour-style" name="hour-style" id="hour-style">
+            <option></option>
+            <option value="numeric">numeric</option>
+            <option value="2-digit">2-digit</option>
+          </select>
+        </li>
+        <li>
+          <label for="minute-style">Minute</label>
+
+          <select class="minute-style" name="minute-style" id="minute-style">
+            <option></option>
+            <option value="numeric">numeric</option>
+            <option value="2-digit">2-digit</option>
+          </select>
+        </li>
+        <li>
+          <label for="second-style">Second</label>
+
+          <select class="second-style" name="second-style" id="second-style">
+            <option></option>
+            <option value="numeric">numeric</option>
+            <option value="2-digit">2-digit</option>
+          </select>
+        </li>
+        <li>
+          <label for="tz-style">Time Zone Name</label>
+
+          <select class="tz-style" name="tz-style" id="tz-style">
+            <option></option>
+            <option value="long">long</option>
+            <option value="short">short</option>
+          </select>
+        </li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>
+        Made with 🕛 by <a href="https://twitter.com/philnash">philnash</a>.
+      </p>
+    </footer>
+
+    <script>
+      // from https://stackoverflow.com/a/54500197/28376
+      const timeZones = [
+        "Africa/Abidjan",
+        "Africa/Accra",
+        "Africa/Algiers",
+        "Africa/Bissau",
+        "Africa/Cairo",
+        "Africa/Casablanca",
+        "Africa/Ceuta",
+        "Africa/El_Aaiun",
+        "Africa/Johannesburg",
+        "Africa/Juba",
+        "Africa/Khartoum",
+        "Africa/Lagos",
+        "Africa/Maputo",
+        "Africa/Monrovia",
+        "Africa/Nairobi",
+        "Africa/Ndjamena",
+        "Africa/Sao_Tome",
+        "Africa/Tripoli",
+        "Africa/Tunis",
+        "Africa/Windhoek",
+        "America/Adak",
+        "America/Anchorage",
+        "America/Araguaina",
+        "America/Argentina/Buenos_Aires",
+        "America/Argentina/Catamarca",
+        "America/Argentina/Cordoba",
+        "America/Argentina/Jujuy",
+        "America/Argentina/La_Rioja",
+        "America/Argentina/Mendoza",
+        "America/Argentina/Rio_Gallegos",
+        "America/Argentina/Salta",
+        "America/Argentina/San_Juan",
+        "America/Argentina/San_Luis",
+        "America/Argentina/Tucuman",
+        "America/Argentina/Ushuaia",
+        "America/Asuncion",
+        "America/Atikokan",
+        "America/Bahia",
+        "America/Bahia_Banderas",
+        "America/Barbados",
+        "America/Belem",
+        "America/Belize",
+        "America/Blanc-Sablon",
+        "America/Boa_Vista",
+        "America/Bogota",
+        "America/Boise",
+        "America/Cambridge_Bay",
+        "America/Campo_Grande",
+        "America/Cancun",
+        "America/Caracas",
+        "America/Cayenne",
+        "America/Chicago",
+        "America/Chihuahua",
+        "America/Costa_Rica",
+        "America/Creston",
+        "America/Cuiaba",
+        "America/Curacao",
+        "America/Danmarkshavn",
+        "America/Dawson",
+        "America/Dawson_Creek",
+        "America/Denver",
+        "America/Detroit",
+        "America/Edmonton",
+        "America/Eirunepe",
+        "America/El_Salvador",
+        "America/Fort_Nelson",
+        "America/Fortaleza",
+        "America/Glace_Bay",
+        "America/Godthab",
+        "America/Goose_Bay",
+        "America/Grand_Turk",
+        "America/Guatemala",
+        "America/Guayaquil",
+        "America/Guyana",
+        "America/Halifax",
+        "America/Havana",
+        "America/Hermosillo",
+        "America/Indiana/Indianapolis",
+        "America/Indiana/Knox",
+        "America/Indiana/Marengo",
+        "America/Indiana/Petersburg",
+        "America/Indiana/Tell_City",
+        "America/Indiana/Vevay",
+        "America/Indiana/Vincennes",
+        "America/Indiana/Winamac",
+        "America/Inuvik",
+        "America/Iqaluit",
+        "America/Jamaica",
+        "America/Juneau",
+        "America/Kentucky/Louisville",
+        "America/Kentucky/Monticello",
+        "America/La_Paz",
+        "America/Lima",
+        "America/Los_Angeles",
+        "America/Maceio",
+        "America/Managua",
+        "America/Manaus",
+        "America/Martinique",
+        "America/Matamoros",
+        "America/Mazatlan",
+        "America/Menominee",
+        "America/Merida",
+        "America/Metlakatla",
+        "America/Mexico_City",
+        "America/Miquelon",
+        "America/Moncton",
+        "America/Monterrey",
+        "America/Montevideo",
+        "America/Nassau",
+        "America/New_York",
+        "America/Nipigon",
+        "America/Nome",
+        "America/Noronha",
+        "America/North_Dakota/Beulah",
+        "America/North_Dakota/Center",
+        "America/North_Dakota/New_Salem",
+        "America/Ojinaga",
+        "America/Panama",
+        "America/Pangnirtung",
+        "America/Paramaribo",
+        "America/Phoenix",
+        "America/Port-au-Prince",
+        "America/Port_of_Spain",
+        "America/Porto_Velho",
+        "America/Puerto_Rico",
+        "America/Punta_Arenas",
+        "America/Rainy_River",
+        "America/Rankin_Inlet",
+        "America/Recife",
+        "America/Regina",
+        "America/Resolute",
+        "America/Rio_Branco",
+        "America/Santarem",
+        "America/Santiago",
+        "America/Santo_Domingo",
+        "America/Sao_Paulo",
+        "America/Scoresbysund",
+        "America/Sitka",
+        "America/St_Johns",
+        "America/Swift_Current",
+        "America/Tegucigalpa",
+        "America/Thule",
+        "America/Thunder_Bay",
+        "America/Tijuana",
+        "America/Toronto",
+        "America/Vancouver",
+        "America/Whitehorse",
+        "America/Winnipeg",
+        "America/Yakutat",
+        "America/Yellowknife",
+        "Antarctica/Casey",
+        "Antarctica/Davis",
+        "Antarctica/DumontDUrville",
+        "Antarctica/Macquarie",
+        "Antarctica/Mawson",
+        "Antarctica/Palmer",
+        "Antarctica/Rothera",
+        "Antarctica/Syowa",
+        "Antarctica/Troll",
+        "Antarctica/Vostok",
+        "Asia/Almaty",
+        "Asia/Amman",
+        "Asia/Anadyr",
+        "Asia/Aqtau",
+        "Asia/Aqtobe",
+        "Asia/Ashgabat",
+        "Asia/Atyrau",
+        "Asia/Baghdad",
+        "Asia/Baku",
+        "Asia/Bangkok",
+        "Asia/Barnaul",
+        "Asia/Beirut",
+        "Asia/Bishkek",
+        "Asia/Brunei",
+        "Asia/Chita",
+        "Asia/Choibalsan",
+        "Asia/Colombo",
+        "Asia/Damascus",
+        "Asia/Dhaka",
+        "Asia/Dili",
+        "Asia/Dubai",
+        "Asia/Dushanbe",
+        "Asia/Famagusta",
+        "Asia/Gaza",
+        "Asia/Hebron",
+        "Asia/Ho_Chi_Minh",
+        "Asia/Hong_Kong",
+        "Asia/Hovd",
+        "Asia/Irkutsk",
+        "Asia/Jakarta",
+        "Asia/Jayapura",
+        "Asia/Jerusalem",
+        "Asia/Kabul",
+        "Asia/Kamchatka",
+        "Asia/Karachi",
+        "Asia/Kathmandu",
+        "Asia/Khandyga",
+        "Asia/Kolkata",
+        "Asia/Krasnoyarsk",
+        "Asia/Kuala_Lumpur",
+        "Asia/Kuching",
+        "Asia/Macau",
+        "Asia/Magadan",
+        "Asia/Makassar",
+        "Asia/Manila",
+        "Asia/Nicosia",
+        "Asia/Novokuznetsk",
+        "Asia/Novosibirsk",
+        "Asia/Omsk",
+        "Asia/Oral",
+        "Asia/Pontianak",
+        "Asia/Pyongyang",
+        "Asia/Qatar",
+        "Asia/Qostanay",
+        "Asia/Qyzylorda",
+        "Asia/Riyadh",
+        "Asia/Sakhalin",
+        "Asia/Samarkand",
+        "Asia/Seoul",
+        "Asia/Shanghai",
+        "Asia/Singapore",
+        "Asia/Srednekolymsk",
+        "Asia/Taipei",
+        "Asia/Tashkent",
+        "Asia/Tbilisi",
+        "Asia/Tehran",
+        "Asia/Thimphu",
+        "Asia/Tokyo",
+        "Asia/Tomsk",
+        "Asia/Ulaanbaatar",
+        "Asia/Urumqi",
+        "Asia/Ust-Nera",
+        "Asia/Vladivostok",
+        "Asia/Yakutsk",
+        "Asia/Yangon",
+        "Asia/Yekaterinburg",
+        "Asia/Yerevan",
+        "Atlantic/Azores",
+        "Atlantic/Bermuda",
+        "Atlantic/Canary",
+        "Atlantic/Cape_Verde",
+        "Atlantic/Faroe",
+        "Atlantic/Madeira",
+        "Atlantic/Reykjavik",
+        "Atlantic/South_Georgia",
+        "Atlantic/Stanley",
+        "Australia/Adelaide",
+        "Australia/Brisbane",
+        "Australia/Broken_Hill",
+        "Australia/Currie",
+        "Australia/Darwin",
+        "Australia/Eucla",
+        "Australia/Hobart",
+        "Australia/Lindeman",
+        "Australia/Lord_Howe",
+        "Australia/Melbourne",
+        "Australia/Perth",
+        "Australia/Sydney",
+        "Europe/Amsterdam",
+        "Europe/Andorra",
+        "Europe/Astrakhan",
+        "Europe/Athens",
+        "Europe/Belgrade",
+        "Europe/Berlin",
+        "Europe/Brussels",
+        "Europe/Bucharest",
+        "Europe/Budapest",
+        "Europe/Chisinau",
+        "Europe/Copenhagen",
+        "Europe/Dublin",
+        "Europe/Gibraltar",
+        "Europe/Helsinki",
+        "Europe/Istanbul",
+        "Europe/Kaliningrad",
+        "Europe/Kiev",
+        "Europe/Kirov",
+        "Europe/Lisbon",
+        "Europe/London",
+        "Europe/Luxembourg",
+        "Europe/Madrid",
+        "Europe/Malta",
+        "Europe/Minsk",
+        "Europe/Monaco",
+        "Europe/Moscow",
+        "Europe/Oslo",
+        "Europe/Paris",
+        "Europe/Prague",
+        "Europe/Riga",
+        "Europe/Rome",
+        "Europe/Samara",
+        "Europe/Saratov",
+        "Europe/Simferopol",
+        "Europe/Sofia",
+        "Europe/Stockholm",
+        "Europe/Tallinn",
+        "Europe/Tirane",
+        "Europe/Ulyanovsk",
+        "Europe/Uzhgorod",
+        "Europe/Vienna",
+        "Europe/Vilnius",
+        "Europe/Volgograd",
+        "Europe/Warsaw",
+        "Europe/Zaporozhye",
+        "Europe/Zurich",
+        "Indian/Chagos",
+        "Indian/Christmas",
+        "Indian/Cocos",
+        "Indian/Kerguelen",
+        "Indian/Mahe",
+        "Indian/Maldives",
+        "Indian/Mauritius",
+        "Indian/Reunion",
+        "Pacific/Apia",
+        "Pacific/Auckland",
+        "Pacific/Bougainville",
+        "Pacific/Chatham",
+        "Pacific/Chuuk",
+        "Pacific/Easter",
+        "Pacific/Efate",
+        "Pacific/Enderbury",
+        "Pacific/Fakaofo",
+        "Pacific/Fiji",
+        "Pacific/Funafuti",
+        "Pacific/Galapagos",
+        "Pacific/Gambier",
+        "Pacific/Guadalcanal",
+        "Pacific/Guam",
+        "Pacific/Honolulu",
+        "Pacific/Kiritimati",
+        "Pacific/Kosrae",
+        "Pacific/Kwajalein",
+        "Pacific/Majuro",
+        "Pacific/Marquesas",
+        "Pacific/Nauru",
+        "Pacific/Niue",
+        "Pacific/Norfolk",
+        "Pacific/Noumea",
+        "Pacific/Pago_Pago",
+        "Pacific/Palau",
+        "Pacific/Pitcairn",
+        "Pacific/Pohnpei",
+        "Pacific/Port_Moresby",
+        "Pacific/Rarotonga",
+        "Pacific/Tahiti",
+        "Pacific/Tarawa",
+        "Pacific/Tongatapu",
+        "Pacific/Wake",
+        "Pacific/Wallis",
+      ];
+      window.addEventListener("load", () => {
+        const yourTimeZone = document.querySelector(".your-time-zone");
+        const timeNow = document.querySelector(".time-now");
+        const timeZoneList = document.querySelector(".time-zone-list");
+        const adjustedTime = document.querySelector(".adjusted-time");
+
+        const timeAttrs = {
+          weekday: document.querySelector(".weekday-style"),
+          era: document.querySelector(".era-style"),
+          year: document.querySelector(".year-style"),
+          month: document.querySelector(".month-style"),
+          day: document.querySelector(".day-style"),
+          hour: document.querySelector(".hour-style"),
+          minute: document.querySelector(".minute-style"),
+          second: document.querySelector(".second-style"),
+          "time-zone-name": document.querySelector(".tz-style"),
+        };
+        const theTime = new Date();
+        const theTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const renderTimes = () => {
+          timeNow.setAttribute("datetime", theTime.toISOString());
+          adjustedTime.setAttribute("datetime", theTime.toISOString());
+          adjustedTime.setAttribute("time-zone", timeZoneList.value);
+          Object.keys(timeAttrs).forEach((attr) => {
+            timeNow.setAttribute(attr, timeAttrs[attr].value);
+            adjustedTime.setAttribute(attr, timeAttrs[attr].value);
+          });
+        };
+        yourTimeZone.innerText = theTimeZone;
+        renderTimes();
+        timeZones.forEach((timeZone) => {
+          const option = document.createElement("option");
+          option.setAttribute("value", timeZone);
+          option.innerText = timeZone;
+          timeZoneList.appendChild(option);
+        });
+        adjustedTime.setAttribute("time-zone", timeZoneList.value);
+        timeZoneList.addEventListener("change", renderTimes);
+        Object.values(timeAttrs).forEach((timeAttr) =>
+          timeAttr.addEventListener("change", renderTimes)
+        );
+      });
+    </script>
+  </body>
+</html>
