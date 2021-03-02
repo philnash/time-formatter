@@ -10,6 +10,7 @@ export class TimeFormatter extends HTMLElement {
       "second",
       "time",
       "weekday",
+      "era",
       "date-style",
       "time-style",
       "time-zone-name",
