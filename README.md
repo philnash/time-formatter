@@ -25,6 +25,10 @@ This requires support for:
 - `Intl.DateTimeFormat.format` - https://caniuse.com/mdn-javascript_builtins_intl_datetimeformat_format
 - `Intl.DateTimeFormat` computed `timeZone` - https://caniuse.com/mdn-javascript_builtins_intl_datetimeformat_resolvedoptions_computed_timezone
 
+## Demo
+
+You can see the element in action in [this example here](https://philnash.github.io/time-formatter/example/). Two `<time-formatter>` elements are used, one showing your time zone and one showing a time zone of your choice. You can choose the different levels for each of the formatting options and see how the date is formatted.
+
 ## Usage
 
 Import the `@philnash/time-formatter` module and that will register the `<time-formatter>` custom element.
